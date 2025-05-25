@@ -1,0 +1,33 @@
+# Compiled binaries
+build/
+*.o
+*.out
+*.exe
+
+# Debian package files
+*.deb
+k2-language-*/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Dependency directories
+node_modules/
+venv/
+__pycache__/
+
+# Log files
+*.log
