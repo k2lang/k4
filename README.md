@@ -132,5 +132,6 @@ K2 is released under the MIT License. See the [LICENSE](LICENSE) file for detail
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Website
-The ofical k2 website is at k2m.netlify.app 
+## Website  
+👉 [Visit the official K2 website](https://k2lang.org)
+
