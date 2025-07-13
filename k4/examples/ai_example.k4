@@ -1,0 +1,62 @@
+// K4 AI Integration Example
+
+fn main() {
+    // Create a neural network model
+    let model = AIModel::NeuralNetwork {
+        name: "digit_classifier",
+        layers: [
+            Dense(784, 128, activation: "relu"),
+            Dense(128, 64, activation: "relu"),
+            Dense(64, 10, activation: "softmax")
+        ]
+    };
+    
+    // Load training data
+    let (train_data, train_labels) = load_mnist("train");
+    
+    // Train the model
+    model.train(train_data, train_labels, {
+        epochs: 10,
+        batch_size: 32,
+        learning_rate: 0.001
+    });
+    
+    // Load test data
+    let (test_data, test_labels) = load_mnist("test");
+    
+    // Evaluate the model
+    let accuracy = model.evaluate(test_data, test_labels);
+    println("Model accuracy: {:.2}%", accuracy * 100);
+    
+    // Make a prediction
+    let sample = test_data[0];
+    let prediction = model.predict(sample);
+    println("Predicted digit: {}", argmax(prediction));
+    println("Actual digit: {}", argmax(test_labels[0]));
+}
+
+fn load_mnist(dataset: str) -> (Tensor, Tensor) {
+    // This would load the MNIST dataset in a real implementation
+    println("Loading MNIST {} dataset...", dataset);
+    
+    // Return dummy data for this example
+    let data = Tensor::random([100, 784]);
+    let labels = Tensor::random([100, 10]);
+    
+    (data, labels)
+}
+
+fn argmax(tensor: Tensor) -> int {
+    // Find the index of the maximum value in the tensor
+    let max_idx = 0;
+    let max_val = tensor[0];
+    
+    for i in 1..tensor.len() {
+        if tensor[i] > max_val {
+            max_val = tensor[i];
+            max_idx = i;
+        }
+    }
+    
+    max_idx
+}

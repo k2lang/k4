@@ -1,0 +1,5 @@
+// K4 Hello World Example
+
+fn main() {
+    println("Hello, K4 World!");
+}

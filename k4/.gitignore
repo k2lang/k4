@@ -11,10 +11,3 @@
 *.html
 *.k2
 *.k3
-
-# Optional extras (if you want)
-lib/
-build/
-scripts/
-src/
-examples/

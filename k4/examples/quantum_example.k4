@@ -1,0 +1,18 @@
+// K4 Quantum Computing Example
+
+quantum Bell {
+    // Create a 2-qubit register
+    let qreg = QuantumRegister(2);
+    
+    // Apply Hadamard gate to the first qubit
+    H(qreg[0]);
+    
+    // Apply CNOT gate with control qubit 0 and target qubit 1
+    CNOT(qreg[0], qreg[1]);
+    
+    // Measure both qubits
+    let result = measure(qreg);
+    
+    // Print the result
+    println("Bell state measurement: {}", result);
+}

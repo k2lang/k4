@@ -1,0 +1,63 @@
+// K4 Distributed Computing Example
+
+distributed MapReduce {
+    nodes: ["node1", "node2", "node3", "node4"],
+    
+    // Map function to be executed on each node
+    fn map(data: [int]) -> [(str, int)] {
+        // Count word occurrences in the data
+        let word_counts = {};
+        
+        for item in data {
+            let word = item.to_string();
+            if word in word_counts {
+                word_counts[word] += 1;
+            } else {
+                word_counts[word] = 1;
+            }
+        }
+        
+        // Convert to list of (word, count) pairs
+        [(word, count) for word, count in word_counts]
+    }
+    
+    // Reduce function to combine results from all nodes
+    fn reduce(mapped_data: [[(str, int)]]) -> [(str, int)] {
+        let combined = {};
+        
+        for node_data in mapped_data {
+            for (word, count) in node_data {
+                if word in combined {
+                    combined[word] += count;
+                } else {
+                    combined[word] = count;
+                }
+            }
+        }
+        
+        // Sort by count in descending order
+        let result = [(word, count) for word, count in combined];
+        result.sort_by(|a, b| b[1] <=> a[1]);
+        
+        result
+    }
+}
+
+fn main() {
+    // Sample data to be processed
+    let data = [
+        [1, 2, 3, 2, 1, 4, 5, 6, 2, 1],
+        [7, 8, 9, 8, 7, 10, 11, 12, 8, 7],
+        [1, 8, 3, 8, 1, 4, 11, 6, 8, 1],
+        [7, 2, 9, 2, 7, 10, 5, 12, 2, 7]
+    ];
+    
+    // Execute the distributed computation
+    let result = MapReduce.execute(data);
+    
+    // Print the results
+    println("Word frequency count:");
+    for (word, count) in result {
+        println("{}: {}", word, count);
+    }
+}
