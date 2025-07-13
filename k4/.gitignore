@@ -1,1 +1,20 @@
+# Ignore all parent-level files
 ../*
+
+# BUT allow the k4 folder to track itself
+!*
+
+# Ignore temp files and extras
+*.tmp
+*.bat
+*.windows
+*.html
+*.k2
+*.k3
+
+# Optional extras (if you want)
+lib/
+build/
+scripts/
+src/
+examples/
