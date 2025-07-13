@@ -1,3 +1,0 @@
-# Basic K2 program
-x = 42
-print x

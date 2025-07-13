@@ -1,0 +1,45 @@
+[package]
+name = "k4"
+version = "0.1.0"
+edition = "2021"
+authors = ["K2 Language Team"]
+description = "K4 Programming Language - The next evolution of the K language family"
+license = "MIT"
+repository = "https://github.com/k2lang/k4"
+
+[dependencies]
+clap = "4.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+log = "0.4"
+env_logger = "0.10"
+
+# For quantum computing features
+num-complex = "0.4"
+
+# For AI integration
+ndarray = "0.15"
+
+# For distributed computing
+tokio = { version = "1.32", features = ["full"] }
+reqwest = { version = "0.11", features = ["json"] }
+
+[dev-dependencies]
+criterion = "0.5"
+proptest = "1.2"
+
+[[bin]]
+name = "k4"
+path = "src/main.rs"
+
+[lib]
+name = "k4lib"
+path = "src/lib.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+debug = false

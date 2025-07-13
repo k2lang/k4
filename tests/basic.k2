@@ -1,5 +1,0 @@
-# Basic test
-x = 42
-y = x
-print y
-# Expected output: 42
