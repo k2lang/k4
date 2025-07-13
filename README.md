@@ -20,7 +20,7 @@ K4 is currently in early development. This repository contains the core language
 ```bash
 # Clone the repository
 git clone https://github.com/k2lang/k4.git
-cd k4
+cd k4 && cd k4
 
 # Build the compiler
 make build
